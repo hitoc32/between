@@ -15,13 +15,15 @@ return new class extends Migration
     {
         Schema::create('border_controls', function (Blueprint $table) {
             $table->id();
+            $table->foreignId("post_id")->constrained("posts");
             $table->integer("arrive_level")->nullable(); //難易度は数字で表す
-            $table->string("arrive_content")->nullable();
+            $table->text("arrive_content")->nullable();
             $table->integer("depature_level")->nullable();
-            $table->string("depature_content")->nullable();
+            $table->text("depature_content")->nullable();
             $table->string("luggage_time")->nullable();
-            $table->string("luggage_content")->nullable();
+            $table->text("luggage_content")->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

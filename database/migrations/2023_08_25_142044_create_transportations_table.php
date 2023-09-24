@@ -15,14 +15,16 @@ return new class extends Migration
     {
         Schema::create('transportations', function (Blueprint $table) {
             $table->id();
+            $table->foreignId("post_id")->constrained("posts");
             $table->string("train_time")->nullable();
             $table->string("train_cost")->nullable();
-            $table->string("train_content")->nullable();
+            $table->text("train_content")->nullable();
             $table->string("bus_time")->nullable();
             $table->string("bus_cost")->nullable();
-            $table->string("bus_content")->nullable();
-            $table->string("other_transportation_content")->nullable();
+            $table->text("bus_content")->nullable();
+            $table->text("other_transportation_content")->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

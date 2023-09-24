@@ -15,10 +15,12 @@ return new class extends Migration
     {
         Schema::create('facilities', function (Blueprint $table) {
             $table->id();
-            $table->string("store_content")->nullable();
-            $table->string("wifi_content")->nullable();
-            $table->string("toilet_content")->nullable();
+            $table->foreignId("post_id")->constrained("posts");
+            $table->text("store_content")->nullable();
+            $table->text("wifi_content")->nullable();
+            $table->text("toilet_content")->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -18,6 +18,7 @@ class FacilitySeeder extends Seeder
     public function run()
     {
         DB::table('facilities')->insert([
+            'post_id' => '1',
             'store_content' => 'チェーン店からフィンランドデザインの店まで幅広いラインナップです',
             'wifi_content' => '時間制限なしのWi-Fiがあります',
             'toilet_content' => 'とてもきれいで、ペットボトルに給水も可能です',
