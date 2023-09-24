@@ -17,6 +17,7 @@ class Border_controlSeeder extends Seeder
     public function run()
     {
         DB::table('border_controls')->insert([
+            'post_id' => '1',
             'arrive_level' => '1',
             'arrive_content' => 'とてもやさしいです',
             'depature_level' => '2',

@@ -17,6 +17,7 @@ class TransportationSeeder extends Seeder
     public function run()
     {
         DB::table('transportations')->insert([
+            'post_id' => '1',
             'train_time' => '40分',
             'train_cost' => '5ユーロ程度',
             'train_content' => '乗客も少なく、車内もきれいで落ち着いています',

@@ -18,7 +18,7 @@ class PostSeeder extends Seeder
     {
         DB::table('posts')->insert([
             'user_id'=> '1',
-            'nation_id' => '71',
+            'nation_id' => '180',
             'airport' => 'ヘルシンキ・ヴァンター空港',
             'airport_sf' => 'HEL',
             'region' => 'ヴァンター',

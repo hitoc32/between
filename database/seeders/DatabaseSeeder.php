@@ -19,10 +19,10 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             NationSeeder::class,
             PostSeeder::class,
-            CommentSeeder::class,
             Border_controlSeeder::class,
             FacilitySeeder::class,
             TransportationSeeder::class,
+            CommentSeeder::class,
             Comment_categorySeeder::class,
             LikeSeeder::class,
             ]);
