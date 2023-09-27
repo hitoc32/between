@@ -12,6 +12,8 @@ use App\Models\User;
 use App\Models\Border_control;
 use App\Models\Facility;
 use App\Models\Transportation;
+use App\Models\Like;
+use Cloudinary;
 
 class PostController extends Controller
 {
@@ -39,9 +41,13 @@ class PostController extends Controller
         ]);
     }
     
-    public function show(Post $post)
+    public function show(Post $post, Comment $comment, User $user)
     {
-        return view('posts.show')->with(['post' => $post]);
+        //いいねを表示させる
+        $like = LIke::where('comment_id', $comment->id)->where('user_id', auth()->user()->id)->first();
+        
+        
+        return view('posts.show', compact('like', 'comment'))->with(['post' => $post, 'user' => $user]);
     }
     
     public function index(Post $post)
@@ -50,9 +56,10 @@ class PostController extends Controller
     }
     
     //国ごとの一覧ページを作成
-    public function nation(Nation $nation){
-        
-        return view('posts.nation')->with(['nations' => $nation]);
+    public function nation(Post $post)
+    {
+        $nationId = Post::find(nation_id);
+        return view('posts.nation')->with(['posts' => $post]);
     }
     
     
@@ -72,15 +79,17 @@ class PostController extends Controller
     public function store(Request $request, Post $post, Border_control $border_control, Facility $facility, Transportation $transportation)
     {
         // リクエストからデータを取得
+        //$uploadedFileUrl = Cloudinary::upload($request->file('image_path')->getRealPath())->getSourcePath();
         $input = $request['post'];
         $post->fill($input)->save();
     
         $input_bordercontrol = $request['border_control'];
         $input_facility = $request['facility'];
         $input_transportation = $request['transportation'];
-        dd($input_bordercontrol);
-    
         
+        $input_bordercontrol['post_id'] = $post->id;
+        $input_facility['post_id'] = $post->id;
+        $input_transportation['post_id'] = $post->id;
     
         $border_control->fill($input_bordercontrol)->save();
         $facility->fill($input_facility)->save();

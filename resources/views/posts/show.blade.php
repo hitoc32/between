@@ -16,7 +16,7 @@
         <P>最終更新日　{{ $post->updated_at }}</P>
     </div>
     <!-- 目次 -->
-    <div class="p-4 border w-1/4 border-2 text-blue-500 underline">
+    <div class="ml-4 border w-1/4 border-2 text-blue-500 underline">
         <ul>
             <li><a href="#basic-content">基本情報</a></li>
             <li><a href="#border-control">出入国検査</a></li>
@@ -221,13 +221,14 @@
     
     <!-- 画像挿入 -->
     
-    <!-- コメント機能 -->
     
     <!-- 投稿の削除 -->
     <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post">
         @csrf
         @method('DELETE')
-        <button type="button" class="p-4" onclick="deletePost({{ $post->id }})">投稿の削除</button> 
+        <button type="button" onclick="deletePost({{ $post->id }})"
+        class="ml-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        投稿の削除</button> 
     </form>
     
     <script>
@@ -239,6 +240,81 @@
         }
     }
     </script>
+    <!-- コメント機能 -->
+    <h2 class="text-lg p-4">コメント</h2>
+    
+    <div class="bg-white rounded-lg shadow-lg w-1/3 ml-4">
+        <div>
+            <form action="{{ route('comment.store') }}" method="POST">
+                @csrf
+                <input type="hidden" name="post_id" value="{{ $post->id }}">
+                <div class="form-group">
+                    <input type="text" class="w-3/4 ml-2 mt-2" placeholder="タイトル"
+                    name="title">
+                    <textarea class="w-3/4 mt-2 ml-2" placeholder="内容"
+                    rows="3" name="comment"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">コメントする</button>
+            </form>
+        </div>
+    </div>
+    
+    <div>
+        @foreach ($post->comments as $comment)
+        <div class="ml-8 mt-2 bg-white rounded-lg shadow-lg w-1/3">
+            <div>
+                
+                <h5 class="text-xl mb-2">{{ $comment->title }}</h5>
+               
+
+                <div>
+                    <p class="text-gray-700 border-b border-gray-300">{{ $comment->comment }}</p>
+                    @if (!empty($comment->user->gender) && !empty($comment->user->age))
+                    <h5 class="text-sm">投稿者：{{ $comment->user->name }}（{{ $comment->user->gender }}・{{ $comment->user->age }}）</h5>
+                    @elseif (!empty($comment->user->gender) && empty($comment->user->age))
+                    <h5 class="text-sm">投稿者：{{ $comment->user->name }}（{{ $comment->user->gender }}）</h5>
+                    @elseif (empty($comment->user->gender) && !empty($comment->user->age))
+                    <h5 class="text-sm">投稿者：{{ $comment->user->name }}（{{ $comment->user->age }}）</h5>
+                    @else (empty($comment->user->gender) && empty($comment->user->age))
+                    <h5 class="text-sm">投稿者：{{ $comment->user->name }}</h5>
+                    @endif
+                    <p class="text-sm text-gray-500">投稿日時：{{ $comment->updated_at }}</p>
+                </div>
+                
+                
+                <div class="flex">
+                    <!-- いいね機能 -->
+                    <div class="bg-blue-500 hover:bg-blue-700 text-white text-center font-bold py-1 px-1 border border-blue-700 rounded w-20 ml-2">
+                        <form action="{{ route('like') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="comment_id" value="{{ $comment->id }}">
+                            <button type="submit">いいね {{ $comment->likes->count() }}</button>
+                        </form>
+                    </div>
+                    
+                    <!-- コメント削除 -->
+                    <div class="flex-grow p-1 mr-auto">
+                        @if ($comment->user_id == Auth::user()->id)
+                        <div>
+                            <span>
+                                <form action="{{ route('comment.delete', $comment->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="text-sm text-gray-500">コメントの削除</button> 
+                                </form> 
+                            </span>
+                        </div>
+                        @endif
+                    </div>
+                </div>
+                
+                
+                
+            </div>
+        </div>
+        @endforeach
+    </div>
+    
     
 </body>
 </x-app-layout>
