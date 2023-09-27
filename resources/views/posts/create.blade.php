@@ -115,7 +115,10 @@
         <p>その他の交通手段</p>
         <textarea class="ml-4 rounded-md sm:w-1/2 sm:h-24" name="transportation[other_transportation_content]" placeholder="例：タクシーや路線バスなど"></textarea>
         
-        <br><input type="submit" value="確認する">
+        <p class="mt-2">参考画像の挿入</p>
+        <input type="file" name="post[image_path]">
+        
+        <br><input class="border mt-4" type="submit" value="確認する">
     </form>
     <!-- フッター
     <div class="footer">

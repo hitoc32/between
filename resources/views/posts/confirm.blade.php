@@ -12,8 +12,7 @@
     <form method="POST" action="/posts">
         @csrf
         <input type="hidden" name="post[user_id]" value="{{ Auth::user()->id }}">
-        <input type="hidden" name="border_control[post_id]" value="{{ $inputs->post->id }}">
-        
+
         <div class="w-full overflow-hidden rounded-lg shadow-xs">
             <div class="w-full overflow-x-auto">
                 <table class="w-full whitespace-no-wrap">
@@ -170,6 +169,8 @@
                                 <input name="transportation[other_transportation_content]" class="px-6 py-4 whitespace-nowrap" value="{{ $inputs['transportation']['other_transportation_content'] }}">
                             </td>
                         </tr>
+                        
+                        
                     </tbody>
                 </table>
             </div>

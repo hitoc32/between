@@ -3,22 +3,21 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>空港一覧</title>
+    <title>国別空港一覧</title>
     <!-- Fonts -->
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <x-app-layout>
     <x-slot name="header">
-        空港一覧
+        国別空港一覧
     </x-slot>
     
 <body>
-    <p class="p-4">国別空港一覧は<a href='/posts/nation' class="underline">こちら</a></p>
     <div class="p-4">
         @foreach ($posts as $post)
         <div>
-            <a href="/posts/{{ $post->id }}" class="text-lg underline">{{ $post->airport }}</a>
-            <p>更新日：{{ $post->updated_at }}</p>
+            <a href="/nations/{nation}" class="text-lg underline">
+                {{ $post->nation->nation }}（{{ $post->count(nation_id) }}）</a>
         </div>
         @endforeach
     </div>

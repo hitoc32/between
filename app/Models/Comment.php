@@ -14,8 +14,10 @@ class Comment extends Model
     protected $fillable = [
         'user_id',
         'post_id',
+        'title',
         'comment',
         ];
+    
     
     public function likes(){
         return $this->hasMany(Like::class, 'comment_id');
@@ -28,6 +30,10 @@ class Comment extends Model
     //postsテーブルとのリレーション
     public function post(){
         return $this->belongsTo(Post::class, 'post_id');
+    }
+    //usersテーブルとのリレーション
+    public function user(){
+        return $this->belongsTo(User::class, 'user_id');
     }
 
 }

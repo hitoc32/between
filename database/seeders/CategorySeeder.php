@@ -17,41 +17,17 @@ class CategorySeeder extends Seeder
     public function run()
     {
         DB::table('categories')->insert([
-            'category' => '出国検査',
+            'category' => '出入国検査',
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
         ]);
         
         DB::table('categories')->insert([
-            'category' => '入国検査',
+            'category' => '空港内施設（Wi-Fi・トイレ含む）',
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
         ]);
-        
-        DB::table('categories')->insert([
-            'category' => '手荷物検査',
-            'created_at' => new DateTime(),
-            'updated_at' => new DateTime(),
-        ]);
-        
-        DB::table('categories')->insert([
-            'category' => '空港内ショップ',
-            'created_at' => new DateTime(),
-            'updated_at' => new DateTime(),
-        ]);
-        
-        DB::table('categories')->insert([
-            'category' => 'Wi-Fi',
-            'created_at' => new DateTime(),
-            'updated_at' => new DateTime(),
-        ]);
-        
-        DB::table('categories')->insert([
-            'category' => 'トイレ',
-            'created_at' => new DateTime(),
-            'updated_at' => new DateTime(),
-        ]);
-        
+       
         DB::table('categories')->insert([
             'category' => 'アクセス',
             'created_at' => new DateTime(),
