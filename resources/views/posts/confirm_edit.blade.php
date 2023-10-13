@@ -9,13 +9,14 @@
 </head>
 <x-app-layout>
 <body>
-    <form method="POST" action="/posts" enctype="multipart/form-data">
+    <form method="POST" action="/posts/{{ $post->id }}">
         @csrf
+        @method('PUT')
         <input type="hidden" name="post[user_id]" value="{{ Auth::user()->id }}">
 
         <div class="w-full overflow-hidden rounded-lg shadow-xs">
             <div class="w-full overflow-x-auto">
-                <table class="table-fixed">
+                <table class="w-full whitespace-no-wrap">
                     <thead>
                         <tr class="text-left font-medium">
                             <th class="px-6 py-3 text-gray-600 bg-gray-100 border-b border-gray-300 w-1/4">質問項目</th>
@@ -38,9 +39,7 @@
                         </tr>
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap">国名</td>
-                            <td>
-                                <input name="post[nation_id]" class="px-6 py-4 whitespace-nowrap" value="{{ $inputs['post']['nation_id'] }}">
-                            </td>
+                            <td><input name="post[nation_id]" class="px-6 py-4 whitespace-nowrap" value="{{ $inputs['post']['nation_id'] }}"></td>
                         </tr>
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap">地域名</td>
@@ -172,7 +171,6 @@
                             </td>
                         </tr>
                         
-                        <!-- 画像の表示 -->
                         
                     </tbody>
                 </table>
@@ -184,7 +182,7 @@
             <button type="submit" name="action" value="back"
             class="ml-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">戻る</button>
             <button type="submit" onclick="successPost()" name="action" value="submit"
-            class="ml-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">投稿する</button>
+            class="ml-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">更新する</button>
         </div>
         
     </form>

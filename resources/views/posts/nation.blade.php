@@ -14,10 +14,11 @@
     
 <body>
     <div class="p-4">
-        @foreach ($posts as $post)
+        @foreach ($nationsWithPostCount as $nation)
         <div>
-            <a href="/nations/{nation}" class="text-lg underline">
-                {{ $post->nation->nation }}（{{ $post->count(nation_id) }}）</a>
+            <li>
+                <a href="/nations/{{ $nation->id }}">{{ $nation->nation }}（{{ $nation->post_count }}）</a>
+            </li>
         </div>
         @endforeach
     </div>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CommentRequest;
 use App\Models\Comment;
+use App\Models\Category;
 use App\Models\User;
 use App\Models\Post;
 use App\Models\Like;
@@ -31,6 +32,7 @@ class CommentController extends Controller
         $comment->post_id = $request->post_id;
 
         $comment -> save();
+        $comment->categories()->attatch($request->input('category_id'));
 
         return redirect()->route('show', ['post' => $request['post_id']]);
     }
@@ -65,6 +67,4 @@ class CommentController extends Controller
     
         return redirect()->back();
     }
-
-    
 }

@@ -19,14 +19,16 @@
                     <div>
                         @foreach ($nationsWithPostCount as $nation)
                         <div>
+                            @if (!empty($nation->post_count))
                             <a href="/nations/{{ $nation->id }}">{{ $nation->nation }}（{{ $nation->post_count }}）</a>
+                            @endif
                         </div>
                         @endforeach
                     </div>
                 </div>
                 
                 <!-- Center Block -->
-                <div class="w-1/2 bg-red-300 text-white p-4 text-center">
+                <div class="w-1/2 bg-red-300 text-white p-4 items-center text-center">
                     <h2 class="text-lg">空港を探す</h2>
                     
                     <!-- 国名のプルダウン -->
@@ -66,7 +68,7 @@
                                 <label for="access">アクセス</label><br>
                             </div>
                             
-                            <input type="submit" value="検索">
+                            <br><input type="submit" value="検索" class="ml-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                         </form>
                     </div>
                 </div>

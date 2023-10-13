@@ -220,26 +220,40 @@
     </div>
     
     <!-- 画像挿入 -->
-    
+    <!--
+    <div class="p-4">
+        <a id="image" class="text-lg">参考画像</a>
+        <img src="{{ $post->image_path }}" alt="画像がありません。"/>
+    </div>
+    -->
     
     <!-- 投稿の削除 -->
-    <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post">
-        @csrf
-        @method('DELETE')
-        <button type="button" onclick="deletePost({{ $post->id }})"
-        class="ml-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-        投稿の削除</button> 
-    </form>
+    <div>
+        @if ($post->user_id == Auth::user()->id)
+        <div class="flex">
+            <a href="/posts/{{ $post->id }}/edit" class="ml-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">投稿の編集</a>
+            
+            <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post">
+                @csrf
+                @method('DELETE')
+                <button type="button" onclick="deletePost({{ $post->id }})"
+                class="ml-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                投稿の削除</button> 
+            </form>
+            
+            <script>
+            function deletePost(id) {
+                'use strict'
+        
+                if (confirm('削除すると復元できません。\n本当に削除しますか？')) {
+                    document.getElementById(`form_${id}`).submit();
+                }
+            }
+            </script>
+        </div>
+        @endif
+    </div>
     
-    <script>
-    function deletePost(id) {
-        'use strict'
-
-        if (confirm('削除すると復元できません。\n本当に削除しますか？')) {
-            document.getElementById(`form_${id}`).submit();
-        }
-    }
-    </script>
     <!-- コメント機能 -->
     <h2 class="text-lg p-4">コメント</h2>
     
@@ -253,6 +267,8 @@
                     name="title">
                     <textarea class="w-3/4 mt-2 ml-2" placeholder="内容"
                     rows="3" name="comment"></textarea>
+                    <!-- タグの選択 -->
+                    
                 </div>
                 <button type="submit" class="btn btn-primary">コメントする</button>
             </form>
@@ -263,10 +279,15 @@
         @foreach ($post->comments as $comment)
         <div class="ml-8 mt-2 bg-white rounded-lg shadow-lg w-1/3">
             <div>
-                
+                <!-- 件名 -->
                 <h5 class="text-xl mb-2">{{ $comment->title }}</h5>
-               
-
+                <!-- タグの表示 -->
+                <!--
+                @foreach ($post->categories as $category)
+                    {{ $category->category }}
+                @endforeach
+                -->
+                <!-- 内容表示 -->
                 <div>
                     <p class="text-gray-700 border-b border-gray-300">{{ $comment->comment }}</p>
                     @if (!empty($comment->user->gender) && !empty($comment->user->age))

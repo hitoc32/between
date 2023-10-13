@@ -35,5 +35,11 @@ class Comment extends Model
     public function user(){
         return $this->belongsTo(User::class, 'user_id');
     }
+    
+    //categoryテーブルとの多対多リレーション
+    public function categories()
+    {
+        return $this->belongsToMany('App\Models\Category');   
+    }
 
 }
