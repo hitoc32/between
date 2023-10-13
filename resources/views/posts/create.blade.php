@@ -17,13 +17,13 @@
         <!-- postsテーブルに格納 -->
         <input type="hidden" name="post[user_id]" value="{{ Auth::user()->id }}">
         
-        <p>空港名</p>
+        <p>空港名　<span class="bg-red-400 text-white px-1 rounded">必須</span></p>
         <input class="ml-4 rounded-md" type="text" name="post[airport]" placeholder="例：羽田空港" value="{{ old('post.airport') }}"/>
         
-        <p>空港略称（英語大文字3字）</p>
+        <p>空港略称（英語大文字3字）　<span class="bg-red-400 text-white px-1 rounded">必須</span></p>
         <input class="ml-4 rounded-md" type="text" name="post[airport_sf]" placeholder="例：HND" value="{{ old('post.airport_sf') }}"/>
         
-        <p>国名</p>
+        <p>国名　<span class="bg-red-400 text-white px-1 rounded">必須</span></p>
             <div class="form-group ml-4 rounded-md">
                 <select class="form-control" id="nation_id" name="post[nation_id]" value="{{ old('post.nation_id') }}">
                 @foreach ($nations as $nation)
@@ -32,10 +32,10 @@
                 </select>
             </div>
         
-        <p>地域名</p>
+        <p>地域名　<span class="bg-red-400 text-white px-1 rounded">必須</span></p>
         <input class="ml-4 rounded-md" type="text" name="post[region]" placeholder="例：東京" value="{{ old('post.region') }}"/>
         
-        <p>空港についての基本情報</p>
+        <p>空港についての基本情報　<span class="bg-red-400 text-white px-1 rounded">必須</span></p>
         <textarea class="ml-4 rounded-md sm:w-1/2 sm:h-24" name="post[basic_content]" placeholder="利用者数や空港の規模などを記述してください。必要に応じて、公式HPのリンクを貼付してください。" value="{{ old('post.basic_content') }}"></textarea>
         
         <!-- border_controlsテーブルに格納 -->
@@ -115,10 +115,12 @@
         <p>その他の交通手段</p>
         <textarea class="ml-4 rounded-md sm:w-1/2 sm:h-24" name="transportation[other_transportation_content]" placeholder="例：タクシーや路線バスなど"></textarea>
         
+        <!--
         <p class="mt-2">参考画像の挿入</p>
-        <input type="file" name="post[image_path]">
+        <input type="file" name="image">
+        -->
         
-        <br><input class="border mt-4" type="submit" value="確認する">
+        <br><input class="ml-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit" value="確認する">
     </form>
     <!-- フッター
     <div class="footer">
