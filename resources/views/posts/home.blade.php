@@ -32,16 +32,7 @@
                     <h2 class="text-lg">空港を探す</h2>
                     
                     <!-- 国名のプルダウン -->
-                    <!--
-                    <div class="form-group">
-                        <label for="nation_name">{{ __('国名') }}</label>
-                        <select class="form-control" id="nation-id" name="nation_id">
-                        @foreach ($nations as $nation)
-                            <option value="{{ $nation->id }}">{{ $nation->nation }}</option>
-                        @endforeach
-                        </select>
-                    </div>
-                    -->
+                    
                     
                     <!-- 検索する空港名 -->
                     <div>
