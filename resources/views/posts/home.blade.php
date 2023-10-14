@@ -49,6 +49,7 @@
                             @csrf
                             <input type="text" name="keyword" class="text-black" placeholder="空港名"/>
                             
+                            <!-- 絞り込み機能
                             <div>
                                 <br><p>絞り込み</p>
                                 
@@ -67,6 +68,7 @@
                                 <input type="checkbox" id="access" name="access"/>
                                 <label for="access">アクセス</label><br>
                             </div>
+                            -->
                             
                             <br><input type="submit" value="検索" class="ml-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                         </form>

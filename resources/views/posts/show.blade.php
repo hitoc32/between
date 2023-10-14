@@ -282,11 +282,7 @@
                 <!-- 件名 -->
                 <h5 class="text-xl mb-2">{{ $comment->title }}</h5>
                 <!-- タグの表示 -->
-                <!--
-                @foreach ($post->categories as $category)
-                    {{ $category->category }}
-                @endforeach
-                -->
+                
                 <!-- 内容表示 -->
                 <div>
                     <p class="text-gray-700 border-b border-gray-300">{{ $comment->comment }}</p>
