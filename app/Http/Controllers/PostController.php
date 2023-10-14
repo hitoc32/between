@@ -35,7 +35,7 @@ class PostController extends Controller
             ->get();
 
         
-        return view('posts.home', compact('nations', 'nationsWithPostCount'))->with([
+        return view('posts.home', compact('nationsWithPostCount'))->with([
             'posts' => $post->getByLimit(),
             'comments' => $comment->getByLimit(),
         ]);
