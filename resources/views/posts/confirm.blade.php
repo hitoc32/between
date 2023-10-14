@@ -181,8 +181,10 @@
 
   
         <div class="flex">
-            <button type="submit" name="action" value="back"
+            <!-- 戻るボタン
+            <button onClick="history.back()" value="back"
             class="ml-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">戻る</button>
+            -->
             <button type="submit" onclick="successPost()" name="action" value="submit"
             class="ml-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">投稿する</button>
         </div>
