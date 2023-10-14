@@ -25,9 +25,6 @@ class PostController extends Controller
     
     public function home(Post $post, Comment $comment)
     {
-        // 検索時の国の絞り込みに使っていた
-        $nations = $this->nation->get();
-        
         //国ごとの件数を多い順で20か国表示
         $nationsWithPostCount = Nation::select('nations.id', 'nations.nation')
             ->selectRaw('count(CASE WHEN posts.deleted_at IS NULL THEN 1 ELSE NULL END) as post_count')
