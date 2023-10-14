@@ -28,7 +28,7 @@ class PostController extends Controller
         //国ごとの件数を多い順で20か国表示
         $nationsWithPostCount = Nation::select('nations.id', 'nations.nation')
             ->selectRaw('count(CASE WHEN posts.deleted_at IS NULL THEN 1 ELSE NULL END) as post_count')
-            ->Join('posts', 'nations.id', '=', 'posts.nation_id')
+            ->join('posts', 'nations.id', '=', 'posts.nation_id')
             ->groupBy('nations.id', 'nations.nation')
             ->orderByDesc('post_count')
             ->limit(20)
