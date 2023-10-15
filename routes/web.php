@@ -42,7 +42,6 @@ Route::middleware('auth')->group(function () {
     
     Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
     
-    
     //投稿編集と更新
     Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('posts.edit');
     Route::post('/posts/{post}/confirm/edit', [PostController::class, 'confirm_edit'])->name('confirm.edit');
