@@ -17,9 +17,11 @@ use App\Http\Controllers\CommentController;
 |
 */
 
+/*
 Route::get('/', function () {
     return view('welcome');
 });
+*/
 
 Route::get('/', [PostController::class, 'home'])->name('home');
 Route::get('/posts/index', [PostController::class, 'index'])->name('posts.index');
