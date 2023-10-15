@@ -46,7 +46,7 @@
     </form>
     
     <!-- sign in -->
-    <div>
-        <a href="/register" class="flex items-center justify-end bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 rounded"><x-primary-button>{{ __('Sign in') }}</x-primary-button></a>
+    <div class="float-right">
+        <a href="/register" class="text-black font-bold py-2 px-2 rounded">新規登録の方はこちら</a>
     </div>
 </x-guest-layout>
